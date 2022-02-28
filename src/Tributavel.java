@@ -1,4 +1,4 @@
-public abstract interface Tributavel extends CalculadorImposto {
+public interface Tributavel{
 
-    public double getValorImposto();
+    double getValorImposto();
 }

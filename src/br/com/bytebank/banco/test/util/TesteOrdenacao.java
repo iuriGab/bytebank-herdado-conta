@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Teste {
+public class TesteOrdenacao {
 
     public static void main(String[] args) {
 
@@ -43,16 +43,48 @@ public class Teste {
         lista.add(cc3);
         lista.add(cc4);
 
-        lista.sort( (Conta c1, Conta c2) -> Integer.compare(c1.getNumero(), c2.getNumero()) ); //lambda
+        for (Conta conta : lista) {
+            System.out.println(conta);
+        }
 
-        Comparator<Conta> comp = (Conta c1, Conta c2) -> { //lambda
-            String nameC1 = c1.getTitular().getNome();
-            String nameC2 = c2.getTitular().getNome();
-            return nameC1.compareTo(nameC2);
-        };
+        //NumberComparator comparator = new NumberComparator();
+        lista.sort(null);
 
-        lista.sort(comp);
+        //Collections.sort(lista, new NameTitularComparator());
+        //Collections.sort(lista);
+        //Collections.reverse(lista);
 
-        lista.forEach( conta -> System.out.println(conta + ", " + conta.getTitular().getNome()) ); //lambda
+        System.out.println("------------");
+
+        for (Conta conta : lista) {
+            System.out.println(conta + ", " + conta.getTitular().getNome());
+        }
+    }
+}
+
+class NameTitularComparator implements Comparator<Conta> {
+
+    @Override
+    public int compare(Conta c1, Conta c2) {
+        String nameC1 = c1.getTitular().getNome();
+        String nameC2 = c2.getTitular().getNome();
+        return nameC1.compareTo(nameC2);
+    }
+}
+
+class NumberComparator implements Comparator<Conta> {
+
+    @Override
+    public int compare(Conta c1, Conta c2) {
+        return Integer.compare(c1.getNumero(), c2.getNumero());
+//        return c1.getNumero() - c2.getNumero();
+//
+//        if (c1.getNumero() < c2.getNumero()){
+//            return -1;
+//        }
+//        if (c1.getNumero() > c2.getNumero()){
+//            return +1;
+//        }
+//        return 0;
     }
 }
